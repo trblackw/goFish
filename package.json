@@ -17,7 +17,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jest": "^23.6.0",
-    "mongoose": "^5.4.2"
+    "mongoose": "^5.4.2",
+    "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
