@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "tailwindcss": "^0.7.3"
   }
