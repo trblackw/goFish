@@ -1,29 +1,45 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs");
-const SALT_WORK_FACTOR = 10;
+const mongoose = require("mongoose"),
+  Schema = mongoose.Schema,
+  bcrypt = require("bcryptjs"),
+  SALT_WORK_FACTOR = 10,
+  Joi = require("joi");
 
 mongoose.set("debug", true);
 
 const UserSchema = new Schema({
-  firstName: {
+  username: {
     type: String,
     minlength: 3,
+    maxlength: 30,
     required: true
   },
-  lastName: {
+  email: {
     type: String,
     minlength: 3,
+    maxlength: 255,
     required: true
   },
   password: {
     type: String,
     minlength: 6,
+    maxlength: 30,
     required: true
+  },
+  city: {
+    type: String,
+    minlength: 3,
+    maxlength: 20,
+    required: false
+  },
+  state: {
+    type: String,
+    minlength: 3,
+    maxlength: 20,
+    required: false
   }
 });
 
-UserSchema.pre("save", next => {
+UserSchema.pre("save", function(next) {
   const user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -43,8 +59,8 @@ UserSchema.pre("save", next => {
   });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+UserSchema.methods.comparePassword = (candidatePassword, cb) => {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) return cb(err);
     cb(null, isMatch);
   });
@@ -52,4 +68,33 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 
 const User = mongoose.model("User", UserSchema);
 
-module.exports = User;
+const validateUser = user => {
+  const schema = {
+    username: Joi.string()
+      .alphanum()
+      .min(3)
+      .max(30)
+      .required(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
+    password: Joi.string()
+      .alphanum()
+      .min(6)
+      .max(20)
+      .required(),
+    city: Joi.string()
+      .alphanum()
+      .min(3)
+      .max(15),
+    state: Joi.string()
+      .alphanum()
+      .min(3)
+      .max(15)
+  };
+  return Joi.validate(user, schema);
+};
+
+module.exports = { User, validateUser };
