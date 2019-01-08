@@ -2,12 +2,12 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div className="w-full max-w-xs">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="w-full max-w-md mx-auto my-6">
+      <form className="bg-green-lighter shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label
-            className="block text-grey-darker text-sm font-bold mb-2"
-            for="username"
+            className="block text-black text-sm font-bold mb-2"
+            htmlFor="username"
           >
             Username
           </label>
@@ -20,8 +20,8 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-grey-darker text-sm font-bold mb-2"
-            for="password"
+            className="block text-black text-sm font-bold mb-2"
+            htmlFor="password"
           >
             Password
           </label>

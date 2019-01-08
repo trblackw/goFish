@@ -36,6 +36,12 @@ const UserSchema = new Schema({
     minlength: 3,
     maxlength: 20,
     required: false
+  },
+  zip: {
+    type: Number,
+    minlength: 5,
+    maxlength: 5,
+    required: false
   }
 });
 
@@ -86,13 +92,14 @@ const validateUser = user => {
       .max(20)
       .required(),
     city: Joi.string()
-      .alphanum()
       .min(3)
       .max(15),
     state: Joi.string()
-      .alphanum()
       .min(3)
-      .max(15)
+      .max(15),
+    zip: Joi.number()
+      .min(5)
+      .max(5)
   };
   return Joi.validate(user, schema);
 };

@@ -3,7 +3,7 @@ import useAPI from "../hooks/useAPI";
 
 const Landing = () => {
   return (
-    <div className="container mx-auto p-3 bg-green-lighter text-black shadow-md rounded mt-5">
+    <div className="container mx-auto max-w-md p-3 bg-green-lighter text-black shadow-md rounded mt-5">
       <h2 className="mb-3">
         Welcome to <b>goFish</b>
       </h2>
