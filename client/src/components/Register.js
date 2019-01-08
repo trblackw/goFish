@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import States from "../json/states";
-import UserContext from "../state/context";
-import { REGISTER_USER } from "../state/constants";
 import { navigate } from "@reach/router";
-
+import { registerUser } from "../state/actions";
+import { useContext } from "react";
+import UserContext from "../state/context";
 //TODO: add autofilling of cities
 
 const initialRegisterFormState = {
@@ -15,9 +15,9 @@ const initialRegisterFormState = {
 };
 
 const Register = () => {
-  const { dispatch } = useContext(UserContext);
-  const [form, setForm] = useState(initialRegisterFormState);
+  const [user, setUser] = useState(initialRegisterFormState);
   const [states, setStates] = useState([]);
+  const { dispatch } = useContext(UserContext);
 
   useEffect(() => {
     const statesArr = [];
@@ -28,13 +28,13 @@ const Register = () => {
   }, []);
 
   const handleInput = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setForm(initialRegisterFormState);
-    dispatch({ type: REGISTER_USER, user: form });
+    setUser(initialRegisterFormState);
+    registerUser(user, dispatch);
     navigate("/");
   };
   return (
