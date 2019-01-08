@@ -12,10 +12,11 @@
     "prestart": "tailwind build ./src/index.tailwind.css -c ./tailwind.js -o ./src/index.css",
     "start": "react-scripts start",
     "prebuild": "tailwind build ./src/index.tailwind.css -c ./tailwind.js -o ./src/index.css",
-    "build": "&& react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080/api",
   "eslintConfig": {
     "extends": "react-app"
   },
