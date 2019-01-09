@@ -1,3 +1,3 @@
 module.exports = {
-  jwtKey: "secret"
+  jwtKey: process.env.PrivateKey
 };
