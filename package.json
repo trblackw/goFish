@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --watch --env=jsdom",
     "client": "cd client && npm start",
     "start": "nodemon server/server.js",
     "server": "nodemon server/server.js",
@@ -22,6 +22,7 @@
     "jest": "^23.6.0",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.2",
+    "node-fetch": "^2.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
