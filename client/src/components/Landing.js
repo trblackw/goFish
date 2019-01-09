@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "@reach/router";
 import useAPI from "../hooks/useAPI";
 
 const Landing = () => {
@@ -9,15 +10,21 @@ const Landing = () => {
       </h2>
       <p className="font-thin">
         This app is designed to extend beyond your average google search,
-           providing users with varying depths of information depending on their
-           requirements. Registered users are able to archive and index their
-           searches, allowing goFish to be a sustainable repository of
-           computationally-based information
+        providing users with varying depths of information depending on their
+        requirements. Registered users are able to archive and index their
+        searches, allowing goFish to be a sustainable repository of
+        computationally-based information
       </p>
-        <br />
+      <br />
       <p className="text-center">
-        This application is completely free and registering should be relatively effortless!
+        This application is completely free and registering should be relatively
+        effortless!
       </p>
+      <Link to="/demo">
+        <button className="btn bg-green-dark hover:bg-green-light p-2 rounded text-white mt-4 mx-auto">
+          Play with the app
+        </button>
+      </Link>
     </div>
   );
 };
