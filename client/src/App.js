@@ -7,16 +7,20 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import UserContext from "./state/context";
 import UserReducer from "./state/reducer";
+import Demo from "./components/Demo";
+import UserLanding from "./components/UserLanding";
 
 const App = () => {
   const initialState = useContext(UserContext);
-  const [state, dispatch] = useReducer(UserReducer, initialState);
+  const [{ currentUser }, dispatch] = useReducer(UserReducer, initialState);
   return (
     <>
-      <UserContext.Provider value={{ state, dispatch }}>
+      <UserContext.Provider value={{ currentUser, dispatch }}>
         <Nav />
         <Router>
           <Landing path="/" />
+          <Demo path="/demo" />
+          <UserLanding path="/user/:id" />
           <Login path="login" />
           <Register path="register" />
         </Router>
