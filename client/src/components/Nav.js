@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "@reach/router";
+import UserContext from "../state/context";
 const Nav = () => {
+  const { currentUser } = useContext(UserContext);
+  const [user, setUser] = useState(null);
+
+  useEffect(
+    () => {
+      if (currentUser.username) {
+        setUser(currentUser);
+      }
+    },
+    [currentUser]
+  );
+
   return (
     <nav
       className="flex items-center justify-between flex-wrap bg-green-dark p-6 shadow-lg"
@@ -96,20 +109,31 @@ const Nav = () => {
           >
             Examples
           </Link>
-          <Link
-            to="/login"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white"
-          >
-            Login
-          </Link>
+          {!user && (
+            <Link
+              to="/login"
+              className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white"
+            >
+              Login
+            </Link>
+          )}
         </div>
         <div>
           <Link
             to="/register"
             className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0"
           >
-            Register
+            {user ? (
+              <span className="font-bold">{user.username}</span>
+            ) : (
+              "Register"
+            )}
           </Link>
+          {user && (
+            <button className="inline-block btn text-sm px-4 py-2 ml-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0">
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
