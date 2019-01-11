@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 const UserContext = createContext({
   currentUser: {
-    id: "",
+    _id: "",
     searchHistory: [],
     favorites: [],
     preferences: {},
